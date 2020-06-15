@@ -15,3 +15,15 @@
     shell: /srv/build.sh
     args:
       chdir: /srv
+
+  - name: Create directory for build
+    file:
+      path: /tmp/build
+      state: directory
+      mode: '0755'
+
+  - name: Copy app to build directory
+    copy:
+      src: /srv/war/target/jenkins.war
+      dest: /tmp/build/jenkins.war
+      remote_src: yes

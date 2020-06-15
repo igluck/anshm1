@@ -1,6 +1,12 @@
 ---
   - name: Builder packages to install
     apt:
-      pkg: ['git', 'maven', 'rsync', 'openjdk-8-jdk']
+      pkg: ['git', 'maven', 'openjdk-8-jdk', 'docker.io', 'python-pip']
       state: present
       update_cache: yes
+
+  - name: Python-pip
+    pip:
+      name:
+        - docker
+        - requests>=2.20.1

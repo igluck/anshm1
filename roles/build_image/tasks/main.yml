@@ -1,0 +1,35 @@
+---
+  - name: pull docker image
+    docker_image:
+      name: tomcat:9
+      source: pull
+
+  - name: Create directory for build
+    file:
+      path: /tmp/build
+      state: directory
+      mode: '0755'
+
+  - name: Copy Dockerfile
+    copy:
+      src: ../files/Dockerfile
+      dest: /tmp/build/Dockerfile
+
+
+  - name: DockerLogin to hub
+    docker_login:
+      username: igluckall
+      password: 34c38628-6a00-461e-a364-a4d50cd0f970
+      reauthorize: yes
+
+
+
+  - name: build image with app
+    docker_image:
+      build:
+        path: /tmp/build
+      name: myapp
+      repository: igluckall/myapp
+      tag: 1.0
+      push: yes
+      source: build

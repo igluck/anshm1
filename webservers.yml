@@ -1,6 +1,5 @@
 ---
   - hosts: webservers
     roles:
-      - deploy_keys
       - webserver_setup
       - app_deploy

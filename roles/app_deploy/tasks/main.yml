@@ -1,18 +1,14 @@
 ---
-  - name: Copy deploy script
-    copy:
-      src: ../files/getapp.sh
-      dest: /var/lib/tomcat9/webapps/getapp.sh
-      mode: u+rwx
+  - name: Pull image
+    docker_image:
+      name: igluckall/myapp:1.0
+      source: pull
 
 
-  - name: Deploy project
-    shell: /var/lib/tomcat9/webapps/getapp.sh
-    args:
-      chdir: /var/lib/tomcat9/webapps
-
-
-  - name: Restart Web-services
-    service:
-      name: tomcat9
-      state: restarted
+  - name: Run application
+    docker_container:
+      name: myapp
+      image: igluckall/myapp:1.0
+      state: started
+      restart: yes
+      ports: "80:8080"

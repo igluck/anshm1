@@ -1,5 +1,11 @@
 ---
   - name: Webserver packages to install
     apt:
-      pkg: ['tomcat9','rsync']
+      pkg: ['docker.io','python-pip']
       state: present
+
+  - name: Python-pip
+    pip:
+      name:
+        - docker
+        - requests>=2.20.1

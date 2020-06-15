@@ -1,6 +1,6 @@
 ---
   - hosts: buildservers
     roles:
-      - deploy_keys
       - builder_setup
       - app_build
+      - build_image
