@@ -1,0 +1,6 @@
+---
+  - name: Builder packages to install
+    apt:
+      pkg: ['git', 'maven', 'rsync', 'openjdk-8-jdk']
+      state: present
+      update_cache: yes

@@ -1,0 +1,17 @@
+---
+  - name: Download app sources
+    git:
+      repo: 'https://github.com/jenkinsci/jenkins.git'
+      dest: /srv
+
+  - name: Copy build script
+    copy:
+      src: ../files/build.sh
+      dest: /srv/build.sh
+      mode: u+rwx
+
+
+  - name: Build project
+    shell: /srv/build.sh
+    args:
+      chdir: /srv

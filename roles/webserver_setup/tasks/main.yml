@@ -1,0 +1,5 @@
+---
+  - name: Webserver packages to install
+    apt:
+      pkg: ['tomcat9','rsync']
+      state: present
